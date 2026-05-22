@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nani-group-replicaset
+  labels:
+    app: web-app
+spec: #Defines the behavior of the ReplicaSet
+  replicas: 2
+  selector: #Defines how the ReplicaSet finds which Pods to manage
+    matchLabels:
+      web-app: nginx
+  template: #Defines the template for the Pods that will be created by the ReplicaSet
+    metadata:
+      labels:
+        web-app: nginx
