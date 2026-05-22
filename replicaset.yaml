@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nani-group-replicaset
+  name: web-app-replicaset
   labels:
     app: web-app
 spec: #Defines the behavior of the ReplicaSet
@@ -15,3 +15,7 @@ spec: #Defines the behavior of the ReplicaSet
         web-app: nginx
     spec: #Defines the behavior of the Pods that will be created by the ReplicaSet
       containers:
+        - name: nginx-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
