@@ -2,4 +2,3 @@ apiVersion: v1
 kind: nameSpace
 metadata:
   name: my-config
-  namespace: my-namespace
