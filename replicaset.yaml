@@ -13,3 +13,5 @@ spec: #Defines the behavior of the ReplicaSet
     metadata:
       labels:
         web-app: nginx
+    spec: #Defines the behavior of the Pods that will be created by the ReplicaSet
+      containers:
