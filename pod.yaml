@@ -1,10 +1,12 @@
-apiVersion: v1 
-kind: Namespace
+apiVersion: v1
+kind: Pod
+
 metadata:
-  name: exe_pod
+  name: exe-pod
+
 spec:
   containers:
-  - name: blood-donor-project
-    image: nanineelapu/jeevanlink
-    ports:
-    - containerPort: 80
+    - name: blood-donor-project
+      image: nanineelapu/jeevanlink
+      ports:
+        - containerPort: 80
