@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jeevanlink-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jeevanlink
+  template:
+    metadata:
+      labels:
+        app: jeevanlink
+    spec:
+      containers:
+        - name: jeevanlink
+          image: nanineelapu/jeevanlink
+          ports:
+            - containerPort: 80
