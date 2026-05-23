@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: jeevanlink-deployment
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: jeevanlink
@@ -16,4 +16,4 @@ spec:
         - name: jeevanlink
           image: nanineelapu/jeevanlink
           ports:
-            - containerPort: 80
+            - containerPort: 3000
