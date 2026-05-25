@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+
+metadata:
+  name: prod-httproutes
+  namespace: akash-ns
+
+spec:
+  parentRefs:
+    - name: akash-gateway
+
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/fitness
+
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /fitness
+
+      backendRefs:
+        - name: fitness-service
+          port: 5000
