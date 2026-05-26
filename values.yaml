@@ -1,0 +1,23 @@
+namespace:
+  name: my-config
+replicaCount: 1
+
+image:
+  repository: nanineelapu/jeevanlink
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30080
+
+config:
+  APP_ENV: production
+  APP_NAME: jeevanlink
+  API_URL: https://api.jeevanlink.com
+
+resources: {}
+
+namespace: default
