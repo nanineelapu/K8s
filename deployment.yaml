@@ -48,6 +48,8 @@ spec:
                 configMapKeyRef:
                   name: jeevanlink-config
                   key: API_URL
+
+---
 apiVersion: v1
 kind: Service
 
