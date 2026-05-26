@@ -48,3 +48,20 @@ spec:
                 configMapKeyRef:
                   name: jeevanlink-config
                   key: API_URL
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: jeevanlink-service
+
+spec:
+  type: NodePort
+
+  selector:
+    app: jeevanlink
+
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30080
