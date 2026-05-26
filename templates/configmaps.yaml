@@ -2,9 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: {{ .values.configMap.name }}
+  name: {{ .Values.configMap.name }}
 
 data:
-{{- range $key, $value := .values.configMap.data }}
+{{- range $key, $value := .Values.configMap.data }}
   {{ $key }}: "{{ $value }}"
 {{- end }}
