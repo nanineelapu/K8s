@@ -1,23 +1,41 @@
 namespace:
   name: my-config
+
 replicaCount: 1
 
-image:
-  repository: nanineelapu/jeevanlink
+labels:
+  app: jeevanlink
+
+container:
+  name: jeevanlink-container
+  image: nanineelapu/jeevanlink
   tag: latest
   pullPolicy: IfNotPresent
+  port: 80
 
 service:
+  name: jeevanlink-service
   type: NodePort
   port: 80
   targetPort: 80
   nodePort: 30080
 
-config:
-  APP_ENV: production
-  APP_NAME: jeevanlink
-  API_URL: https://api.jeevanlink.com
+configMap:
+  name: jeevanlink-config
+
+  data:
+    APP_ENV: production
+    APP_NAME: jeevanlink
+    API_URL: https://api.jeevanlink.com
+    PORT: "80"
+
+secret:
+  name: jeevanlink-secret
+  type: Opaque
+
+  data:
+    DB_USERNAME: admin
+    DB_PASSWORD: password123
+    JWT_SECRET: jeevanlinksecret
 
 resources: {}
-
-namespace: default
