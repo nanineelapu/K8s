@@ -2,64 +2,70 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: {{.Release.name}}-deployment
+  name: {{ .Release.Name }}-deployment
 
 spec:
-  replicas: {{.values.replicas}}
+  replicas: {{ .Values.replicaCount }}
 
   selector:
     matchLabels:
-      app: jeevanlink
+      app: {{ .Values.labels.app }}
 
   template:
     metadata:
       labels:
-        app: {{.values.labels.app}}
+        app: {{ .Values.labels.app }}
 
     spec:
       containers:
-        - name: {{.values.container.name}}
-          image: {{.values.container.image}}
+        - name: {{ .Values.container.name }}
+          image: "{{ .Values.container.image }}:{{ .Values.container.tag }}"
+
+          imagePullPolicy: {{ .Values.container.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.container.port }}
 
           env:
             - name: APP_ENV
               valueFrom:
                 configMapKeyRef:
-                  name: jeevanlink-config
+                  name: {{ .Values.configMap.name }}
                   key: APP_ENV
 
             - name: APP_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: jeevanlink-config
+                  name: {{ .Values.configMap.name }}
                   key: APP_NAME
-
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: jeevanlink-config
-                  key: PORT
 
             - name: API_URL
               valueFrom:
                 configMapKeyRef:
-                  name: jeevanlink-config
+                  name: {{ .Values.configMap.name }}
                   key: API_URL
+
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMap.name }}
+                  key: PORT
 
 ---
 apiVersion: v1
 kind: Service
 
 metadata:
-  name: jeevanlink-service
+  name: {{ .Values.service.name }}
 
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
 
   selector:
-    app: jeevanlink
+    app: {{ .Values.labels.app }}
 
   ports:
     - protocol: TCP
-      port: {{values.service.port}}
-      targetPort: {{values.service.targetport}}
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      nodePort: {{ .Values.service.nodePort }}
