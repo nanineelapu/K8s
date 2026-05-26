@@ -1,14 +1,20 @@
 apiVersion: v1
 kind: Pod
+
 metadata:
-name: exe-pod
+  name: exe-pod
+
 spec:
-containers:
-name: blood-donor-project
-image: nanineelapu/jeevanlink
-ports:
-containerPort: 3000
-name: nginx-container
-image: nginx
-ports:
--containerPort:
+  containers:
+
+    - name: blood-donor-project
+      image: nanineelapu/jeevanlink
+
+      ports:
+        - containerPort: 3000
+
+    - name: nginx-container
+      image: nginx
+
+      ports:
+        - containerPort: 80
