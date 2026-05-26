@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: jeevanlink-config
+  name: {{values.configmap.name}}
 
 data:
   APP_ENV: production
