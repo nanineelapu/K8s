@@ -5,7 +5,7 @@ metadata:
   name: jeevanlink-deployment
 
 spec:
-  replicas: 3
+  replicas: {{.value.replicas}}
 
   selector:
     matchLabels:
@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jeevanlink
+        app: {{.values.labels.app}}
 
     spec:
       containers:
