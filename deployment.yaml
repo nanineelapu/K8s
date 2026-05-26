@@ -5,7 +5,7 @@ metadata:
   name: jeevanlink-deployment
 
 spec:
-  replicas: {{.value.replicas}}
+  replicas: {{.values.replicas}}
 
   selector:
     matchLabels:
@@ -18,11 +18,8 @@ spec:
 
     spec:
       containers:
-        - name: jeevanlink-container
-          image: neelapunani/jeevanlink
-
-          ports:
-            - containerPort: 3000
+        - name: {{.values.container.name}}
+          image: {{.values.container.image}}
 
           env:
             - name: APP_ENV
@@ -64,6 +61,6 @@ spec:
 
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
-      nodePort: 30080
+      port: {{values.service.port}}
+      targetPort: {{values.service.targetport}}
+type
