@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: {{.release.name}}-deployment
+  name: {{.Release.name}}-deployment
 
 spec:
   replicas: {{.Values.replicas}}
