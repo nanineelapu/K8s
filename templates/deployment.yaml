@@ -5,7 +5,7 @@ metadata:
   name: {{.Release.name}}-deployment
 
 spec:
-  replicas: {{.Values.replicas}}
+  replicas: {{.values.replicas}}
 
   selector:
     matchLabels:
@@ -14,12 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        app: {{.Values.labels.app}}
+        app: {{.values.labels.app}}
 
     spec:
       containers:
-        - name: {{.Values.container.name}}
-          image: {{.Values.container.image}}
+        - name: {{.values.container.name}}
+          image: {{.values.container.image}}
 
           env:
             - name: APP_ENV
@@ -63,4 +63,3 @@ spec:
     - protocol: TCP
       port: {{values.service.port}}
       targetPort: {{values.service.targetport}}
-type
