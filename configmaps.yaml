@@ -2,10 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: {{values.configmap.name}}
+  name: {{ .Values.configMap.name }}
 
 data:
-  APP_ENV: production
-  APP_NAME: jeevanlink
-  PORT: "3000"
-  API_URL: https://api.jeevanlink.com
+{{- range $key, $value := .Values.configMap.data }}
+  {{ $key }}: "{{ $value }}"
+{{- end }}
