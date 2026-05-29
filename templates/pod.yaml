@@ -8,5 +8,14 @@ spec:
   containers:
     - name: blood-donor-project
       image: nanineelapu/jeevanlink
+
       ports:
         - containerPort: 80
+
+      volumeMounts:
+        - name: app-volume
+          mountPath: /app/data
+
+  volumes:
+    - name: app-volume
+      emptyDir: {}
